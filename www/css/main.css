@@ -1,0 +1,147 @@
+* {
+    padding: 10px;
+    margin: 10px;
+}
+
+body {
+    padding: 0;
+    margin-top: 0;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+}
+
+#main {
+    margin: 0;
+    padding: 0;
+    /*background-color: #272728;*/
+    /*border: solid;*/
+    border-radius: 5px;
+}
+
+.header {
+    /*opacity: 30%;*/
+    /*filter: alpha(opacity=30);*/
+    /*color: #c40909;*/
+    /*color: white;*/
+    font-size: 50px;
+    padding: 30px;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    float: top;
+    text-align: center;
+}
+
+.content {
+    /*color: #c40909;*/
+    /*color: white;*/
+    border: 0 solid darkorange;
+    border-top-width: 1px;
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    /*background-color: yellow;*/
+}
+
+.navbar-top {
+    margin: 0;
+    padding: 0;
+    /*background-color: blue;*/
+}
+
+td {
+    border: 3px solid;
+}
+
+.inline-list {
+    display: block;
+    list-style: none;
+    text-align: center;
+}
+
+.inline-list li {
+    background-color: white;
+    padding: 0;
+    /*padding: 0;*/
+    display: inline-block;
+    border: solid 2px darkorange;
+    border-radius: 5px;
+}
+
+.menu-item {
+    margin: 0;
+    padding: auto;
+    text-decoration: none;
+    font-size: 11pt;
+    display: block;
+    min-width: 150px;
+    color: black;
+}
+
+.inline-list a:visited {
+    color: black;
+}
+
+.inline-list li:hover {
+    /*background-color: #111111;*/
+    background-color: #f2944d;
+}
+
+.menu-item:hover {
+    font-weight: bold;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    /*background-color: #f1f1f1;*/
+    background-color: white;
+    min-width: 170px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border: solid 2px darkorange;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    margin: 0;
+    color: black;
+    padding: 6px 8px;
+    text-decoration: none;
+    display: block;
+    min-width: 150px;
+    min-height: 20px;
+}
+
+.top-border {
+    border: 0 solid black;
+    border-top-width: 1px;
+}
+
+.dropdown-content a:hover {
+    /*background-color: #272728;*/
+    background-color: #f2944d;
+    font-weight: bold;
+}
+
+.dropdown-btn {
+    cursor: pointer;
+}
+
+.show {
+    display: block;
+}
+
+.dropdown-block {
+    padding: 0;
+    margin: 0;
+}
+
+.nav {
+    background: url("../relax.jpg");
+    padding: 0;
+    margin: 0;
+}

@@ -1,0 +1,125 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+ *}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>{ifset title}{include title|stripHtml} | {/ifset}Nette Sandbox</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{$basePath}/css/style.css">
+    <link rel="stylesheet" href="{$basePath}/css/main.css">
+    {block head}{/block}
+</head>
+
+<body>
+<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+<div id="main">
+    <div class="nav">
+        <div class="header">
+            Spočívejte s námi na spocni.cz
+        </div>
+
+        <div class="navbar-top">
+            <ul class="inline-list">
+                <li>
+                    <a class="menu-item" href="#" style="display: block;">Domů</a>
+                </li>
+                <li>
+                    <div class="dropdown-block">
+                        <div class="menu-item dropdown-btn" style="display: block;">Seznam Spočíváren
+                        </div>
+                        <!--<div class="dropdown">-->
+                        <div id="listDropdown" class="dropdown-content">
+                            <a href="#">Ostrava</a>
+                            <a href="#" class="top-border">Opava</a>
+                            <a href="#" class="top-border">Olomouc</a>
+                            <a href="#" class="top-border">Havířov</a>
+                            {*<a href="#" class="top-border">Jihlava</a>*}
+                            <a href="#" class="top-border">Pardubice</a>
+                            {*<a href="#" class="top-border">Hradec Králové</a>*}
+                            <a href="#" class="top-border">Praha Černý Most</a>
+                            {*<a href="#" class="top-border">Plzeň</a>*}
+                            {*<a href="#" class="top-border">Mladá Boleslav</a>*}
+                            {*<a href="#" class="top-border"></a>*}
+                        </div>
+                    </div>
+                    <!--</div>-->
+                </li>
+                <li>
+                    <a class="menu-item" href="#" style="display: block;">FAQ</a>
+                </li>
+                <li>
+                    <a class="menu-item" href="#" style="display: block;">Galerie</a>
+                </li>
+                <li>
+                    <a class="menu-item" href="#" style="display: block;">Kontakt</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-title" n:if="isset($pageTitle)">
+        <h2>
+            {$pageTitle}
+        </h2>
+    </div>
+
+    <div class="content">
+        {include content}
+    </div>
+</div>
+
+{block scripts}
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+    <script src="{$basePath}/js/main.js"></script>
+
+    <script>
+        function listDropdown() {
+            document.getElementById("listDropdown").classList.toggle("show");
+        }
+
+        $(document).ready(function () {
+            $('.dropdown-block').mouseenter(function () {
+                console.log("focus");
+                $('#listDropdown').toggleClass("show", true)
+            });
+
+            $('.dropdown-block').mouseleave(function () {
+                $('#listDropdown').toggleClass("show", false)
+            });
+
+            // $('.dropdown-btn').on("focus", function (e) {
+            //     console.log("focus in");
+            //     $('#listDropdown').toggleClass("show", true)
+            // });
+            //
+            // $('.dropdown-btn').on("focusout", function (e) {
+            //     console.log("focus out");
+            //
+            //     if(!$('.dropdown-content').is(":focus")) {
+            //         $('#listDropdown').toggleClass("show", false)
+            //     }
+            // });
+        });
+
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropdown-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+{/block}
+</body>
+</html>
