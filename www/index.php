@@ -2,6 +2,8 @@
 
 $container = require __DIR__ . '/../app/bootstrap.php';
 
+\Tracy\Debugger::enable();
+
 $configurator->setDebugMode(true);
 $configurator->enableDebugger(__DIR__ . '/../log');
 
