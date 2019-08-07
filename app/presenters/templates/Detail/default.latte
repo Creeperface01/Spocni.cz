@@ -1,0 +1,27 @@
+{block content}
+<div n:ifset="$cityData">
+    <p n:foreach="$cityData['info'] as $text">
+        {$text}
+    </p>
+
+    <div id="map">
+
+    </div>
+
+    <script n:ifset="$cityData['coords']">
+        $(document).ready(function () {
+            var center = SMap.Coords.fromWGS84({$cityData['coords'][0]}, {$cityData['coords'][1]});
+            var map = new SMap(JAK.gel("map"), center, 18);
+
+            map.addDefaultLayer(SMap.DEF_BASE).enable();
+            map.addDefaultControls();
+
+            var layer = new SMap.Layer.Marker();
+            map.addLayer(layer);
+            layer.enable();
+
+            layer.addMarker(new SMap.Marker(center, null, {}));
+        });
+    </script>
+</div>
+{/block}

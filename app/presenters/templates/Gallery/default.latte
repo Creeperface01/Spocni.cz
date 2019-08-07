@@ -1,0 +1,13 @@
+{block content}
+    {ifset $images}
+        <ul class="gallery">
+            <li class="gallery-list" n:foreach="$images as $img">
+                <img class="gallery-img" src="/galerie/{$img}">
+            </li>
+        </ul>
+    {else}
+        <p>
+            Zatím tu nejsou žádné obrázky
+        </p>
+    {/ifset}
+{/block}

@@ -12,6 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{$basePath}/css/style.css">
     <link rel="stylesheet" href="{$basePath}/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
     {block head}{/block}
 </head>
 
@@ -20,91 +22,76 @@
 <div id="main">
     <div class="nav">
         <div class="header">
-            Spočívejte s námi na spocni.cz
+            Spočni s námi na spocni.cz
         </div>
 
-        <div class="navbar-top">
-            <ul class="inline-list">
+        <div class="navbar-top center">
+            <ul class="inline-list center">
                 <li>
-                    <a class="menu-item" href="#" style="display: block;">Domů</a>
+                    <a class="menu-item" n:href="Homepage:default" style="display: block;">Domů</a>
                 </li>
                 <li>
-                    <div class="dropdown-block">
+                    <div class="dropdown-block" onclick="listDropdown()">
                         <div class="menu-item dropdown-btn" style="display: block;">Seznam Spočíváren
                         </div>
-                        <!--<div class="dropdown">-->
                         <div id="listDropdown" class="dropdown-content">
-                            <a href="#">Ostrava</a>
-                            <a href="#" class="top-border">Opava</a>
-                            <a href="#" class="top-border">Olomouc</a>
-                            <a href="#" class="top-border">Havířov</a>
-                            {*<a href="#" class="top-border">Jihlava</a>*}
-                            <a href="#" class="top-border">Pardubice</a>
-                            {*<a href="#" class="top-border">Hradec Králové</a>*}
-                            <a href="#" class="top-border">Praha Černý Most</a>
-                            {*<a href="#" class="top-border">Plzeň</a>*}
-                            {*<a href="#" class="top-border">Mladá Boleslav</a>*}
-                            {*<a href="#" class="top-border"></a>*}
+                            {foreach $places as $i => $place}
+                                <a n:href="Detail:default $place['name']" n:class="$i > 0 ? 'top-border'">{$place['name']}</a>
+                            {/foreach}
                         </div>
                     </div>
-                    <!--</div>-->
                 </li>
                 <li>
                     <a class="menu-item" href="#" style="display: block;">FAQ</a>
                 </li>
                 <li>
-                    <a class="menu-item" href="#" style="display: block;">Galerie</a>
+                    <a n:href="Gallery:default" class="menu-item" style="display: block;">Galerie</a>
                 </li>
                 <li>
-                    <a class="menu-item" href="#" style="display: block;">Kontakt</a>
+                    <a n:href="Contact:default" class="menu-item" style="display: block;">Kontakt</a>
                 </li>
             </ul>
         </div>
     </div>
 
-    <div class="page-title" n:if="isset($pageTitle)">
-        <h2>
-            {$pageTitle}
-        </h2>
-    </div>
-
     <div class="content">
-        {include content}
+        <div class="inner-content">
+            <div class="page-title" n:if="isset($pageTitle)">
+                {$pageTitle}
+            </div>
+
+            <div class="content-spacer"></div>
+
+            <div class="text-content">
+                {include content}
+            </div>
+        </div>
+
+        <div class="bottom-content">
+            Copyright © Jan Bednář, 2019
+        </div>
     </div>
 </div>
 
 {block scripts}
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+    <script src="https://api.mapy.cz/loader.js"></script>
     <script src="{$basePath}/js/main.js"></script>
+    <script>Loader.load()</script>
 
     <script>
         function listDropdown() {
-            document.getElementById("listDropdown").classList.toggle("show");
+            $('#listDropdown').toggleClass("show", true)
         }
 
         $(document).ready(function () {
             $('.dropdown-block').mouseenter(function () {
-                console.log("focus");
                 $('#listDropdown').toggleClass("show", true)
             });
 
             $('.dropdown-block').mouseleave(function () {
                 $('#listDropdown').toggleClass("show", false)
             });
-
-            // $('.dropdown-btn').on("focus", function (e) {
-            //     console.log("focus in");
-            //     $('#listDropdown').toggleClass("show", true)
-            // });
-            //
-            // $('.dropdown-btn').on("focusout", function (e) {
-            //     console.log("focus out");
-            //
-            //     if(!$('.dropdown-content').is(":focus")) {
-            //         $('#listDropdown').toggleClass("show", false)
-            //     }
-            // });
         });
 
         window.onclick = function (event) {
